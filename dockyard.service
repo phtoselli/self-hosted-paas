@@ -1,0 +1,16 @@
+[Unit]
+Description=Dockyard PaaS Daemon
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/dockyard daemon
+Restart=on-failure
+RestartSec=5
+User=root
+Group=docker
+Environment=RUST_LOG=info
+
+[Install]
+WantedBy=multi-user.target
